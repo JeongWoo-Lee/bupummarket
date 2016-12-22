@@ -1,0 +1,65 @@
+CREATE TABLE IF NOT EXISTS `bupummarket`.`user` (
+  `no` INT NOT NULL AUTO_INCREMENT,
+  `id` VARCHAR(45) NOT NULL,
+  `pw` VARCHAR(45) NOT NULL,
+  `email` VARCHAR(45) NOT NULL,
+  `pNum` VARCHAR(45) NOT NULL,
+  `grade` INT NOT NULL,
+  `company` INT NOT NULL,
+  `model` INT NOT NULL,
+  `regdate` DATETIME NOT NULL,
+  `logdate` DATETIME NOT NULL,
+  `note` VARCHAR(45) NULL,
+  PRIMARY KEY (`no`, `id`, `email`, `pNum`))
+ENGINE = InnoDB;
+
+CREATE TABLE IF NOT EXISTS `bupummarket`.`article` (
+  `article_no` INT NOT NULL AUTO_INCREMENT,
+  `writer_id` VARCHAR(45) NOT NULL,
+  `writer_name` VARCHAR(45) NOT NULL,
+  `title` VARCHAR(255) NOT NULL,
+  `hasimg` INT NOT NULL,
+  `read_cnt` INT NULL,
+  `category_part` VARCHAR(45) NOT NULL,
+  `category_parts` VARCHAR(45) NOT NULL,
+  `category_company` VARCHAR(45) NOT NULL,
+  `category_model` VARCHAR(45) NOT NULL,
+  `regdate` DATETIME NOT NULL,
+  `moddate` DATETIME NOT NULL,
+  PRIMARY KEY (`article_no`))
+ENGINE = InnoDB;
+
+CREATE TABLE IF NOT EXISTS `bupummarket`.`article_content` (
+  `article_article_no` INT NOT NULL,
+  `condition` INT NOT NULL,
+  `amount` INT NOT NULL,
+  `content` VARCHAR(255) NOT NULL,
+  `location` VARCHAR(45) NOT NULL,
+  `ispost` INT NOT NULL,
+  `note` VARCHAR(45) NULL,
+  PRIMARY KEY (`article_article_no`),
+  INDEX `fk_article_content_article_idx` (`article_article_no` ASC),
+  CONSTRAINT `fk_article_content_article`
+    FOREIGN KEY (`article_article_no`)
+    REFERENCES `bupummarket`.`article` (`article_no`)
+    ON DELETE NO ACTION
+    ON UPDATE NO ACTION)
+ENGINE = InnoDB;
+
+CREATE TABLE IF NOT EXISTS `bupummarket`.`image` (
+  `article_article_no` INT NOT NULL,
+  `titleimg` VARCHAR(80) NOT NULL,
+  `img1` VARCHAR(80) NULL,
+  `img2` VARCHAR(80) NULL,
+  `img3` VARCHAR(80) NULL,
+  `img4` VARCHAR(80) NULL,
+  `img5` VARCHAR(80) NULL,
+  `note` VARCHAR(45) NULL,
+  PRIMARY KEY (`article_article_no`),
+  INDEX `fk_image_article1_idx` (`article_article_no` ASC),
+  CONSTRAINT `fk_image_article1`
+    FOREIGN KEY (`article_article_no`)
+    REFERENCES `bupummarket`.`article` (`article_no`)
+    ON DELETE NO ACTION
+    ON UPDATE NO ACTION)
+ENGINE = InnoDB;
