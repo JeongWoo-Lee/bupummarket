@@ -10,7 +10,7 @@ import com.bupummarket.bind.DataBinding;
 import com.bupummarket.dao.ArticleDao;
 
 //스프링 애노테이션(@Component)으로 변경
-@Component("/article/list.do")
+@Component("/view/main.do")
 public class ArticleListController implements Controller, DataBinding {
   ArticleDao articleDao;
   
@@ -31,6 +31,6 @@ public class ArticleListController implements Controller, DataBinding {
   	HashMap<String,Object> paramMap = new HashMap<String,Object>();
   	//paramMap.put("orderCond", model.get("orderCond"));
     model.put("article", articleDao.selectList(paramMap));
-    return "/article/ArticleList.jsp";
+    return "/view/main.jsp";
   }
 }

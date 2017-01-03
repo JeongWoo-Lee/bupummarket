@@ -20,7 +20,8 @@ jQuery(document).ready(function () {
     $('.bxslider').bxSlider({
         mode: 'fade',
         captions: true,
-        auto: true
+        auto: true,
+        hideControlOnEnd : true
     });
     
     $('.menu-link').bigSlide();

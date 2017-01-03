@@ -24,7 +24,6 @@ public class MySqlArticleDao implements ArticleDao {
 	public List<Article> selectList(HashMap<String, Object> paramMap)
 			throws Exception {
 		SqlSession sqlSession = sqlSessionFactory.openSession();
-		System.out.println("여기까지는 오지롱: 섹션 1");
 		try {
 			return sqlSession.selectList("com.bupummarket.dao.articleDao.selectList", paramMap);
 		} finally {
