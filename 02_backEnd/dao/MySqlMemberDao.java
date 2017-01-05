@@ -89,14 +89,19 @@ public class MySqlMemberDao implements MemberDao {
     }
   }
   
-  public Member exist(String email, String password) throws Exception {
-  	HashMap<String,String> paramMap = new HashMap<String,String>();
+  public Member exist(String email, String pw) throws Exception {
+  	HashMap<String,String> paramMap = new HashMap<String,String>(); 
   	paramMap.put("email", email);
-  	paramMap.put("password", password);
+  	paramMap.put("pw", pw);
   	
-  	SqlSession sqlSession = sqlSessionFactory.openSession();
+  	SqlSession sqlSession = sqlSessionFactory.openSession(); 
   	try {
-  		return sqlSession.selectOne("spms.dao.MemberDao.exist", paramMap);
+  		Member member = sqlSession.selectOne("com.bupummarket.dao.MemberDao.exist", paramMap);
+  		if (member.getNo() > 0){
+  			paramMap.put("no", Integer.toString(member.getNo()));
+  			sqlSession.update("com.bupummarket.dao.MemberDao.login", paramMap);
+  		}
+  		return member;
   	} finally {
   		sqlSession.close();
   	}

@@ -4,52 +4,74 @@ import java.util.Date;
 
 public class Member {
 	protected int 		no;
-	protected String 	name;
-	protected String 	email;
-	protected String 	password;
-	protected Date		createdDate;
-	protected Date		modifiedDate;
+	protected String name;
+	protected String pw;
+	protected String email;
+	protected String pNumber;
+	protected int grade;
+	protected int company;
+	protected int model;
+	protected Date regdate;
+	protected Date logdate;
 	
-	public int getNo() { 
+	public int getNo() {
 		return no;
 	}
-	public Member setNo(int no) {
+	public void setNo(int no) {
 		this.no = no;
-		return this;
 	}
 	public String getName() {
 		return name;
 	}
-	public Member setName(String name) {
+	public void setName(String name) {
 		this.name = name;
-		return this;
+	}
+	public String getPw() {
+		return pw;
+	}
+	public void setPw(String pw) {
+		this.pw = pw;
 	}
 	public String getEmail() {
 		return email;
 	}
-	public Member setEmail(String email) {
+	public void setEmail(String email) {
 		this.email = email;
-		return this;
 	}
-	public String getPassword() {
-		return password;
+	public String getpNumber() {
+		return pNumber;
 	}
-	public Member setPassword(String password) {
-		this.password = password;
-		return this;
+	public void setpNumber(String pNumber) {
+		this.pNumber = pNumber;
 	}
-	public Date getCreatedDate() {
-		return createdDate;
+	public int getGrade() {
+		return grade;
 	}
-	public Member setCreatedDate(Date createdDate) {
-		this.createdDate = createdDate;
-		return this;
+	public void setGrade(int grade) {
+		this.grade = grade;
 	}
-	public Date getModifiedDate() {
-		return modifiedDate;
+	public int getCompany() {
+		return company;
 	}
-	public Member setModifiedDate(Date modifiedDate) {
-		this.modifiedDate = modifiedDate;
-		return this;
+	public void setCompany(int company) {
+		this.company = company;
+	}
+	public int getModel() {
+		return model;
+	}
+	public void setModel(int model) {
+		this.model = model;
+	}
+	public Date getRegdate() {
+		return regdate;
+	}
+	public void setRegdate(Date regdate) {
+		this.regdate = regdate;
+	}
+	public Date getLogdate() {
+		return logdate;
+	}
+	public void setLogdate(Date logdate) {
+		this.logdate = logdate;
 	}
 }
