@@ -22,7 +22,7 @@ public class MySqlArticleDao implements ArticleDao {
 	}
 
 	public List<Article> selectList(HashMap<String, Object> paramMap)
-			throws Exception {
+			throws Exception { 
 		SqlSession sqlSession = sqlSessionFactory.openSession();
 		try {
 			return sqlSession.selectList("com.bupummarket.dao.articleDao.selectList", paramMap);

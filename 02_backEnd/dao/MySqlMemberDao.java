@@ -34,7 +34,7 @@ public class MySqlMemberDao implements MemberDao {
   public int insert(Member member) throws Exception  {
   	SqlSession sqlSession = sqlSessionFactory.openSession();
     try {
-      int count = sqlSession.insert("spms.dao.MemberDao.insert", member);
+      int count = sqlSession.insert("com.bupummarket.dao.MemberDao.insert", member);
       sqlSession.commit();
       return count;
     } finally {
@@ -42,10 +42,11 @@ public class MySqlMemberDao implements MemberDao {
     }
   }
 
-  public Member selectOne(int no) throws Exception { 
+  public Member selectOne(Member member) throws Exception { 
   	SqlSession sqlSession = sqlSessionFactory.openSession();
   	try {
-  		return sqlSession.selectOne("spms.dao.MemberDao.selectOne", no);
+  		member = sqlSession.selectOne("com.bupummarket.dao.MemberDao.selectOne", member);
+  		return member;
   	} finally {
   		sqlSession.close();
   	}
@@ -54,21 +55,17 @@ public class MySqlMemberDao implements MemberDao {
   public int update(Member member) throws Exception { 
     SqlSession sqlSession = sqlSessionFactory.openSession();
     try {
-    	Member original = sqlSession.selectOne(
-    			"spms.dao.MemberDao.selectOne", member.getNo());
+//    	Member original = sqlSession.selectOne(
+//    			"com.bupummarket.dao.MemberDao.selectOne", member.getEmail());
+//    	
+//    	Hashtable<String,Object> paramMap = new Hashtable<String,Object>();
+//    	if (!member.getEmail().equals(original.getEmail())) {
+//    		paramMap.put("email", member.getEmail());
+//    	}
     	
-    	Hashtable<String,Object> paramMap = new Hashtable<String,Object>();
-    	if (!member.getName().equals(original.getName())) {
-    		paramMap.put("name", member.getName());
-    	}
-    	if (!member.getEmail().equals(original.getEmail())) {
-    		paramMap.put("email", member.getEmail());
-    	}
-    	
-    	if (paramMap.size() > 0) {
-    		paramMap.put("no", member.getNo());
-    		int count = sqlSession.update("spms.dao.MemberDao.update", paramMap);
-    		sqlSession.commit();
+    	if (true) {
+    		int count = sqlSession.update("com.bupummarket.dao.MemberDao.update", member);
+    		sqlSession.commit(); 
     		return count;
     	} else {
     		return 0;
@@ -81,7 +78,7 @@ public class MySqlMemberDao implements MemberDao {
   public int delete(int no) throws Exception {  
   	SqlSession sqlSession = sqlSessionFactory.openSession();
     try {
-      int count = sqlSession.delete("spms.dao.MemberDao.delete", no);
+      int count = sqlSession.delete("com.bupummarket.dao.MemberDao.delete", no);
       sqlSession.commit();
       return count;
     } finally {

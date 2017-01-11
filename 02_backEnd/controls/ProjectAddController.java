@@ -18,7 +18,7 @@ public class ProjectAddController implements Controller, DataBinding {
   public ProjectAddController setProjectDao(ArticleDao projectDao) {
     this.projectDao = projectDao;
     return this;
-  }
+  } 
   
   public Object[] getDataBinders() {
     return new Object[]{
